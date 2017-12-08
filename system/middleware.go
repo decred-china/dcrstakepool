@@ -27,8 +27,8 @@ func (application *Application) ApplyTemplates(c *web.C, h http.Handler) http.Ha
 // Makes sure controllers can have access to session
 func (application *Application) ApplySessions(c *web.C, h http.Handler) http.Handler {
 	fn := func(w http.ResponseWriter, r *http.Request) {
-		session, _ := application.Store.Get(r, "session")
-		c.Env["Session"] = session
+		s, _ := application.Store.Get(r, "session")
+		c.Env["Session"] = s
 		h.ServeHTTP(w, r)
 	}
 	return http.HandlerFunc(fn)

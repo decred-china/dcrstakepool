@@ -111,6 +111,12 @@
 
 [[projects]]
   branch = "master"
+  name = "github.com/srinathgs/mysqlstore"
+  packages = ["."]
+  revision = "4f803440ed5b694a6499ba6310dc14245910fc3e"
+
+[[projects]]
+  branch = "master"
   name = "github.com/zenazn/goji"
   packages = ["graceful","graceful/listener","web","web/middleware","web/mutil"]
   revision = "c05078ca81941f8e801bba3ddc0e6b86b7fdc893"
@@ -148,6 +154,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "b98bc1b9be0ac8d195caa20878b1b6a9b3142cc2995c13f3df09afa6287eb076"
+  inputs-digest = "2a659cb090baa8b0c9a457e60237eeeed8078cd7bf81b5299ddf10c83e524c8e"
   solver-name = "gps-cdcl"
   solver-version = 1

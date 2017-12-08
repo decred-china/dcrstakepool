@@ -3,6 +3,7 @@ package system
 import (
 	"crypto/sha256"
 	"encoding/json"
+	"fmt"
 	"errors"
 	"html/template"
 	"io"
@@ -15,6 +16,7 @@ import (
 	"github.com/decred/dcrstakepool/models"
 	"github.com/go-gorp/gorp"
 	"github.com/gorilla/sessions"
+	"github.com/srinathgs/mysqlstore"
 	"github.com/zenazn/goji/web"
 
 	"google.golang.org/grpc/codes"
@@ -31,7 +33,7 @@ type Application struct {
 	APISecret      string
 	Template       *template.Template
 	TemplatesPath  string
-	Store          *sessions.CookieStore
+	Store          *mysqlstore.MySQLStore
 	DbMap          *gorp.DbMap
 	CsrfProtection *CsrfProtection
 }
@@ -58,12 +60,17 @@ func (application *Application) Init(APISecret string, baseURL string,
 
 	hash := sha256.New()
 	io.WriteString(hash, cookieSecret)
-	application.Store = sessions.NewCookieStore(hash.Sum(nil))
-	application.Store.Options = &sessions.Options{
-		Path:     "/",
-		HttpOnly: true,
-		Secure:   cookieSecure,
+	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?parseTime=true&loc=Local", DBUser, DBPassword, DBHost, DBPort, DBName)
+	store, err := mysqlstore.NewMySQLStore(dsn, "session", "/", 3600, hash.Sum(nil))
+	if err != nil {
+		panic(err)
 	}
+
+	store.Options.Path = "/"
+	store.Options.HttpOnly = true
+	store.Options.Secure = cookieSecure
+
+	application.Store = store
 
 	application.DbMap = models.GetDbMap(
 		APISecret,

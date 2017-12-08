@@ -104,7 +104,6 @@ func runMain() int {
 
 	// Supported API versions are advertised in the API stats result
 	APIVersionsSupported := []int{1, 2}
-
 	grpcConnections := make([]*grpc.ClientConn, len(cfg.StakepooldHosts))
 
 	if cfg.EnableStakepoold {
@@ -115,6 +114,8 @@ func runMain() int {
 				return 8
 			}
 		}
+	} else {
+		grpcConnections = make([]*grpc.ClientConn, 0)
 	}
 
 	controller, err := controllers.NewMainController(activeNetParams.Params,

@@ -7,7 +7,7 @@ import (
 
 	"github.com/dgrijalva/jwt-go"
 	"github.com/go-gorp/gorp"
-	_ "github.com/go-sql-driver/mysql"
+	// _ "github.com/go-sql-driver/mysql"
 	"golang.org/x/crypto/bcrypt"
 )
 
