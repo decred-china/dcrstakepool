@@ -25,6 +25,7 @@ import (
 	"github.com/decred/dcrstakepool/stakepooldclient"
 	"github.com/decred/dcrstakepool/system"
 	"github.com/decred/dcrwallet/wallet/udb"
+	"github.com/go-gomail/gomail"
 	"github.com/go-gorp/gorp"
 	"github.com/haisum/recaptcha"
 	"github.com/zenazn/goji/web"
@@ -486,20 +487,18 @@ func (controller *MainController) isAdmin(c web.C, r *http.Request) (bool, error
 // SendMail sends an email with the passed data using the system's SMTP
 // configuration.
 func (controller *MainController) SendMail(emailaddress string, subject string, body string) error {
-
 	hostname := controller.smtpHost
+	port := 465
 
 	if strings.Contains(controller.smtpHost, ":") {
 		parts := strings.Split(controller.smtpHost, ":")
+		if len(parts) != 2 {
+			return errors.New("invalid smtp host")
+		}
 		hostname = parts[0]
+		port = parts[1]
 	}
 
-	// Set up authentication information.
-	auth := smtp.PlainAuth("", controller.smtpUsername, controller.smtpPassword, hostname)
-
-	// Connect to the server, authenticate, set the sender and recipient,
-	// and send the email all in one step.
-	to := []string{emailaddress}
 	msg := []byte("To: " + emailaddress + "\r\n" +
 		"From: " + controller.smtpFrom + "\r\n" +
 		"Subject: " + subject + "\r\n" +
@@ -511,11 +510,19 @@ func (controller *MainController) SendMail(emailaddress string, subject string, 
 		return nil
 	}
 
-	err := smtp.SendMail(controller.smtpHost, auth, controller.smtpFrom, to, msg)
+	m := gomail.NewMessage()
+	m.SetHeader("From", controller.smtpFrom)
+	m.SetHeader("To", emailaddress)
+	m.SetHeader("Subject", subject)
+	m.SetBody("text/html", msg)
+
+	d := gomail.NewDialer(hostname, port, controller.smtpFrom, controller.smtpPassword)
+	err := d.DialAndSend(m)
 	if err != nil {
 		log.Errorf("Error sending email to %v", err)
 	}
-	return err
+
+	return nil
 }
 
 // StakepooldGetIgnoredLowFeeTickets performs a gRPC GetIgnoredLowFeeTickets

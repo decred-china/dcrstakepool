@@ -60,5 +60,9 @@
   name = "golang.org/x/net"
 
 [[constraint]]
+  branch = "master"
+  name = "github.com/go-gomail/gomail"
+
+[[constraint]]
   name = "google.golang.org/grpc"
   version = "v1.6.0"
