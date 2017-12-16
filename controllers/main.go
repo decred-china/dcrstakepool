@@ -8,7 +8,6 @@ import (
 	"html/template"
 	"net"
 	"net/http"
-	"net/smtp"
 	"sort"
 	"strconv"
 	"strings"
@@ -488,22 +487,23 @@ func (controller *MainController) isAdmin(c web.C, r *http.Request) (bool, error
 // configuration.
 func (controller *MainController) SendMail(emailaddress string, subject string, body string) error {
 	hostname := controller.smtpHost
-	port := 465
+	port := int64(465)
 
 	if strings.Contains(controller.smtpHost, ":") {
 		parts := strings.Split(controller.smtpHost, ":")
 		if len(parts) != 2 {
-			return errors.New("invalid smtp host")
+			return errors.New("invalid smtp host:port")
 		}
+
+		var err error
 		hostname = parts[0]
-		port = parts[1]
+		port, err = strconv.ParseInt(parts[1], 10, 32)
+		if err != nil {
+			return errors.New("invalid smtp host:port")
+		}
 	}
 
-	msg := []byte("To: " + emailaddress + "\r\n" +
-		"From: " + controller.smtpFrom + "\r\n" +
-		"Subject: " + subject + "\r\n" +
-		"\r\n" +
-		body + "\r\n")
+	msg := body
 
 	if controller.smtpHost == "" {
 		log.Warn("no mail server configured -- skipping sending " + string(msg))
@@ -516,7 +516,7 @@ func (controller *MainController) SendMail(emailaddress string, subject string, 
 	m.SetHeader("Subject", subject)
 	m.SetBody("text/html", msg)
 
-	d := gomail.NewDialer(hostname, port, controller.smtpFrom, controller.smtpPassword)
+	d := gomail.NewDialer(hostname, int(port), controller.smtpFrom, controller.smtpPassword)
 	err := d.DialAndSend(m)
 	if err != nil {
 		log.Errorf("Error sending email to %v", err)
