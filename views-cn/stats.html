@@ -4,14 +4,14 @@
             <div class="row main-row pie-row">
                 <div class="col-sm-15 col-md-6">
 				<hr>
-				<h1>Pool Votes</h1>
+				<h1>矿池投票</h1>
 					<div class="pull-right">
 				<div class="legend-box">
-					 <label>Missed</label>
+					 <label>未投中</label>
 				    <div class="legend"></div>
 				</div>
 				<div class="legend-box">
-			      <label>Votes</label>
+			      <label>以投中</label>
 			      <div class="legend legend1"></div>
 			      </div>
 				</div>
@@ -19,22 +19,22 @@
                 </div>
                 <div class="col-sm-15 col-md-6 col-md-offset-3 pie-margin">
 				<hr>
-				<h1>Pool Tickets</h1>
+				<h1>票池投票</h1>
 						<div class="pull-right">
 				<div class="legend-box">
-					 <label>Live</label>
+					 <label>活跃的</label>
 				    <div class="legend legend2"></div>
 				</div>
 				<div class="legend-box">
-			      <label>Immature</label>
+			      <label>不成熟的</label>
 			      <div class="legend legend3"></div>
 			      </div>
 				</div>
-				<div id="test2"></div>		
+				<div id="test2"></div>
                </div>
                <div class="col-sm-15 col-md-6">
                <hr>
-               <h1>Stakepool vs Network Proportion</h1>
+               <h1>Stakepool vs Network 比例</h1>
                	<div class="pull-right">
 				<div class="legend-box">
 					 <label>Stakepool Ticket Pool</label>
@@ -51,30 +51,30 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Stats &amp; Status</th>
+                                <th>状态</th>
                             </tr>
                         </thead>
                         <tbody>
-               <tr><td>Immature:</td><td><span id="Immature">{{ .StakeInfo.Immature }}</td></tr>
-                <tr><td>Live:</td><td><span id="Live">{{ .StakeInfo.Live }}</td></tr>
-                <tr><td>Voted:</td><td><span id="Voted">{{ .StakeInfo.Voted }}</td></tr>
-                <tr><td>Missed:</td><td><span id="Missed">{{ .StakeInfo.Missed }}</td></tr>
-                <tr><td>Expired:</td><td><span id="Expired">{{ .StakeInfo.Expired }}</td></tr>
-                <tr><td>Revoked:</td><td><span id="Revoked">{{ .StakeInfo.Revoked }}</td></tr>
-                <tr><td>ProportionMissed:</td><td><span id="ProportionMissed">{{ .StakeInfo.ProportionMissed }}</td></tr>
-                <tr><td>Pool Size:</td><td><span id="PoolSize">{{ .StakeInfo.PoolSize }}</td></tr>
+               <tr><td>不成熟的:</td><td><span id="Immature">{{ .StakeInfo.Immature }}</td></tr>
+                <tr><td>活跃的:</td><td><span id="Live">{{ .StakeInfo.Live }}</td></tr>
+                <tr><td>投中的:</td><td><span id="Voted">{{ .StakeInfo.Voted }}</td></tr>
+                <tr><td>未投中的:</td><td><span id="Missed">{{ .StakeInfo.Missed }}</td></tr>
+                <tr><td>过期的:</td><td><span id="Expired">{{ .StakeInfo.Expired }}</td></tr>
+                <tr><td>撤销的:</td><td><span id="Revoked">{{ .StakeInfo.Revoked }}</td></tr>
+                <tr><td>未投中的比例:</td><td><span id="ProportionMissed">{{ .StakeInfo.ProportionMissed }}</td></tr>
+                <tr><td>矿池容量:</td><td><span id="PoolSize">{{ .StakeInfo.PoolSize }}</td></tr>
                 <tr><td>AllMempoolTix:</td><td><span id="AllMempoolTix">{{ .StakeInfo.AllMempoolTix }}</td></tr>
                 <!-- disabled due to https://github.com/decred/dcrwallet/issues/251
                         <tr><td>OwnMempoolTix:</td><td><span id="OwnMempoolTix">{{ .StakeInfo.OwnMempoolTix }}</td></tr>-->
-                <tr><td>ProportionLive:</td><td><span id="ProportionLive">{{ .StakeInfo.ProportionLive }}</td></tr>
-                <tr><td>Difficulty:</td><td><span id="Difficulty">{{ .StakeInfo.Difficulty }}</td></tr>
-                <tr><td>TotalSubsidy:</td><td><span id="TotalSubsidy">{{ .StakeInfo.TotalSubsidy }}</td></tr>
-                <tr><td>Total User Count:</td><td><span id="UserCount">{{ .UserCount }}</td></tr>
-                <tr><td>Active User Count:</td><td><span id="UserCountActive">{{ .UserCountActive }}</td></tr>
-                <tr><td>Network:</td><td><span id="Network">{{ .Network }}</td></tr>
-                <tr><td>Pool Fees:</td><td><span id="PoolFees">{{ .PoolFees }}</td></tr>
-                <tr><td>Pool Status:</td><td><span id="PoolStatus">{{ .PoolStatus }}</td></tr>
-                <tr><td>Pool Email:</td><td><span id="PoolEmail">{{ .PoolEmail }}</td></tr>
+                <tr><td>投中的比例:</td><td><span id="ProportionLive">{{ .StakeInfo.ProportionLive }}</td></tr>
+                <tr><td>难度:</td><td><span id="Difficulty">{{ .StakeInfo.Difficulty }}</td></tr>
+                <tr><td>总奖励:</td><td><span id="TotalSubsidy">{{ .StakeInfo.TotalSubsidy }}</td></tr>
+                <tr><td>总用户数:</td><td><span id="UserCount">{{ .UserCount }}</td></tr>
+                <tr><td>激活用户数:</td><td><span id="UserCountActive">{{ .UserCountActive }}</td></tr>
+                <tr><td>网络:</td><td><span id="Network">{{ .Network }}</td></tr>
+                <tr><td>矿池费用:</td><td><span id="PoolFees">{{ .PoolFees }}</td></tr>
+                <tr><td>矿池状态:</td><td><span id="PoolStatus">{{ .PoolStatus }}</td></tr>
+                <tr><td>矿池邮件:</td><td><span id="PoolEmail">{{ .PoolEmail }}</td></tr>
                         </tbody>
                     </table>
                 </div>

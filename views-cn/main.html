@@ -21,33 +21,33 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
   {{if .Admin}}<li {{if .IsAdminTickets}}class="active"{{end}}><a href="/admintickets">Add Low Fee Tickets</a></li>{{end}}
-  {{if .Admin}}<li {{if .IsAdminStatus}}class="active"{{end}}><a href="/status">Status</a></li>{{end}}  
-	<li {{if .IsIndex }}class="active"{{end}}><a href="/">Home</a></li>
-	<li {{if .IsStats }}class="active"{{end}}><a href="/stats">Stats</a></li>
-	{{if .User}}<li {{if .IsAddress }}class="active"{{end}}><a href="/address">Address</a></li>{{end}}
-  {{if .User}}<li {{if .IsSettings }}class="active"{{end}}><a href="/settings">Settings</a></li>{{end}}
-	{{if .User}}{{if .User.MultiSigAddress}}<li {{if .IsTickets }}class="active"{{end}}><a href="/tickets">Tickets</a></li>{{end}}{{end}}
-  {{if .User}}{{if .User.MultiSigAddress}}<li {{if .IsVoting }}class="active"{{end}}><a href="/voting">Voting</a></li>{{end}}{{end}}
+  {{if .Admin}}<li {{if .IsAdminStatus}}class="active"{{end}}><a href="/status">状态</a></li>{{end}}
+	<li {{if .IsIndex }}class="active"{{end}}><a href="/">首页</a></li>
+	<li {{if .IsStats }}class="active"{{end}}><a href="/stats">状态</a></li>
+	{{if .User}}<li {{if .IsAddress }}class="active"{{end}}><a href="/address">地址</a></li>{{end}}
+  {{if .User}}<li {{if .IsSettings }}class="active"{{end}}><a href="/settings">设置</a></li>{{end}}
+	{{if .User}}{{if .User.MultiSigAddress}}<li {{if .IsTickets }}class="active"{{end}}><a href="/tickets">选票</a></li>{{end}}{{end}}
+  {{if .User}}{{if .User.MultiSigAddress}}<li {{if .IsVoting }}class="active"{{end}}><a href="/voting">投票</a></li>{{end}}{{end}}
       </ul>
 {{if .User}}
       <ul class="nav navbar-nav navbar-right">
 	<li>
 	<p class="navbar-text">
-	Hello, {{ .User.Email}}
+	你好, {{ .User.Email}}
 	</p>
 	</li>
-	<li><a href="/logout">Logout</a></li>
+	<li><a href="/logout">退出</a></li>
       </ul>
 {{else}}
       <ul class="nav navbar-nav navbar-right">
-	{{if .IsEmailUpdate }}<li><a href="/emailupdate">Email Update</a></li>{{end}}
-	{{if .IsEmailVerify }}<li><a href="/emailverify">Email Verification</a></li>{{end}}
-	{{if .IsPasswordReset }}<li><a href="/passwordreset">Password Reset</a></li>{{end}}
-	{{if .IsPasswordUpdate }}<li><a href="/passwordupdate">Password Update</a></li>{{end}}
-	<li><a href="/signin">Sign In</a></li>
-	<li><a href="/signup">Sign Up</a></li>
+	{{if .IsEmailUpdate }}<li><a href="/emailupdate">邮箱更新</a></li>{{end}}
+	{{if .IsEmailVerify }}<li><a href="/emailverify">邮箱认证</a></li>{{end}}
+	{{if .IsPasswordReset }}<li><a href="/passwordreset">密码重置</a></li>{{end}}
+	{{if .IsPasswordUpdate }}<li><a href="/passwordupdate">密码更新</a></li>{{end}}
+	<li><a href="/signin">登入</a></li>
+	<li><a href="/signup">登出</a></li>
       </ul>
-{{end}}	
+{{end}}
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>

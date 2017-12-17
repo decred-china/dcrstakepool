@@ -5,15 +5,15 @@
     {{range .FlashError}}<div class="well well-notification  orange-notification">{{.}}</div>{{end}}
     {{range .FlashSuccess}}<div class="well well-notification green-notification">{{.}}</div>{{end}}
   </div>
- 
+
   <div class="col-sm-15 col-md-10 text-left center-block">
-    <h1>Voting Preferences (v{{.VoteVersion}})</h1>
+    <h1>投票偏好 (v{{.VoteVersion}})</h1>
 
     <hr />
 
     <!-- AGENDAS -->
-    <h2>Agendas</h2>
-    <p><em>See the <a href="https://voting.decred.org">Decred Voting Site</a> for more information.</em></p>
+    <h2>议程</h2>
+    <p><em>查看 <a href="https://voting.decred.org">Decred 投票站点</a> 获取更多的信息.</em></p>
     {{with .Agendas}}
     <form method="post" class="form-horizontal">
       {{ range $i, $data := . }}
@@ -29,14 +29,13 @@
         </div>
       {{end}}
     <div class="form-group">
-        <button id="updateVoting" name="updateVoting" class="btn btn-primary">Update Voting Preferences</button>
+        <button id="updateVoting" name="updateVoting" class="btn btn-primary">更新投票偏好</button>
     </div>
     <input type="hidden" name="{{$.CsrfKey}}" value={{$.CsrfToken}}>
     </form>
     {{else}}
-    <p><strong>There are no active agendas to vote on currently.</strong></p>
+    <p><strong>目前没有活跃的投票议程.</strong></p>
     {{end}}
-
 
   </div>
 

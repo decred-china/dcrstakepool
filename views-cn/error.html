@@ -3,25 +3,25 @@
     <div class="row sign-in-row">
     <div class="col-xs-15 col-md-8 col-lg-8 notication-col center-block">
        <div class="well well-notification  orange-notification">{{if .RateLimited}}
-                        Rate Limited
+                        访问过于频繁
                 {{end}}
                 {{if not .RateLimited}}
-                        {{if eq .RPCStatus "Running"}}Temporary{{end}} Error
+                        {{if eq .RPCStatus "Running"}}临时{{end}} 错误
                 {{end}}</div>
     </div>
     <div class="col-sm-15 col-md-6 text-left sign-in-col center-block">
-    <h1>We could not process your request</h1>
+    <h1>无法处理你的请求</h1>
 	{{if .RateLimited}}
-            <p>Your request has been rate limited to lighten the load on the servers.
-            {{if .Referer}}<a href="{{ .Referer }}">{{end}}Please re-try your request.{{if .Referer}}</a>{{end}}</p>
+            <p>访问过于频繁
+            {{if .Referer}}<a href="{{ .Referer }}">{{end}}请稍后再试{{if .Referer}}</a>{{end}}</p>
         {{end}}
         {{if not .RateLimited}}
 	{{if eq .RPCStatus "Running"}}
-           <p>A temporary error occurred. This can happen due to RPC results being temporarily out of sync.
-         {{if .Referer}}<a href="{{ .Referer }}">{{end}}Please re-try your request.{{if .Referer}}</a>{{end}}</p>
+           <p>RPC 更新失败.
+         {{if .Referer}}<a href="{{ .Referer }}">{{end}}请稍后再试.{{if .Referer}}</a>{{end}}</p>
          {{end}}
          {{if eq .RPCStatus "Stopped"}}
-            <p>Stakepool is currently not processing RPC commands so most functionality of the web interface will not work until connections to the RPC server is restored.  <b>Wallets are still online and voting.</b></p>
+            <p>矿池目前正在连接中<b>钱包仍然可用</b></p>
          {{end}}
          {{end}}
     </div>
