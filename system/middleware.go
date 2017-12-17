@@ -20,7 +20,7 @@ func (application *Application) ApplyTemplates(c *web.C, h http.Handler) http.Ha
 	fn := func(w http.ResponseWriter, r *http.Request) {
 		language := r.Header.Get("accept-language")
 		if strings.Contains(language, "zh") {
-			c.Env["Tempalte"] = application.TemplateCN
+			c.Env["Template"] = application.TemplateCN
 		} else {
 			c.Env["Template"] = application.Template
 		}
