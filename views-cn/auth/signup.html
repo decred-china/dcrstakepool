@@ -8,22 +8,22 @@
 	{{if .IsClosed }}<div class="well well-notification  orange-notification">{{.ClosePoolMsg}}</div>{{end}}
     </div>
     <div class="col-sm-15 col-md-6 text-left center-block">
-    <h1 style="{{if .FlashSuccess}}display: none;{{end}}">Sign Up</h1>
+    <h1 style="{{if .FlashSuccess}}display: none;{{end}}">注册</h1>
     <form method="post" class="form-horizontal">
   <div class="form-group" style="{{if .FlashSuccess}}display: none;{{end}}">
-    <label class="control-label col-sm-2" for="email">Email:</label>
+    <label class="control-label col-sm-2" for="email">邮箱:</label>
 	<div class="col-sm-13">
       <input name="email" type="email" class="form-control" placeholder="Email" required>
 	</div>
   </div>
   <div class="form-group" style="{{if .FlashSuccess}}display: none;{{end}}">
-    <label class="control-label col-sm-2" for="password">Password:</label>
+    <label class="control-label col-sm-2" for="password">密码:</label>
 	<div class="col-sm-13">
       <input name="password" type="password" class="form-control" id="password" placeholder="Password" required>
 	</div>
   </div>
   <div class="form-group" style="{{if .FlashSuccess}}display: none;{{end}}">
-    <label class="control-label col-sm-2" for="passwordrepeat">Password:</label>
+    <label class="control-label col-sm-2" for="passwordrepeat">密码:</label>
 	<div class="col-sm-13">
       <input name="passwordrepeat" type="password" class="form-control" placeholder="Password" required>
 	</div>
@@ -45,14 +45,14 @@
 <div class="row">
   <div class="form-group col-sm-8" style="{{if .FlashSuccess}}display: none;{{end}}">
     <div class="col-md-button sign-in-button">
-      <button id="signin" name="signin" type="submit" class="btn btn-primary" {{if .IsClosed }}disabled{{end}}>Sign Up</button>
+      <button id="signin" name="signin" type="submit" class="btn btn-primary" {{if .IsClosed }}disabled{{end}}>注册</button>
     </div>
   </div>
 
   <div class="form-group col-sm-7 pull-right" style="{{if .FlashSuccess}}display: none;{{end}}">
 <!--    <label class="col-md-4 control-label" for="reset"></label> -->
-        <p><a href="/passwordreset">Forgot your password?</a></p>
-        <p><a href="/signup">New user?</a></p>
+        <p><a href="/passwordreset">忘记密码?</a></p>
+        <p><a href="/signup">新用户?</a></p>
   </div>
 </div>
 	<input type="hidden" name="{{.CsrfKey}}" value={{.CsrfToken}}>
