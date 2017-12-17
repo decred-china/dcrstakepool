@@ -8,7 +8,7 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/decred/dcrstakepool/models"
+	"github.com/decred-china/dcrstakepool/models"
 	"github.com/dgrijalva/jwt-go"
 	"github.com/go-gorp/gorp"
 	"github.com/gorilla/sessions"
@@ -18,7 +18,12 @@ import (
 // Makes sure templates are stored in the context
 func (application *Application) ApplyTemplates(c *web.C, h http.Handler) http.Handler {
 	fn := func(w http.ResponseWriter, r *http.Request) {
-		c.Env["Template"] = application.Template
+		language := r.Header.Get("accept-language")
+		if strings.Contains(language, "zh") {
+			c.Env["Tempalte"] = application.TemplateCN
+		} else {
+			c.Env["Template"] = application.Template
+		}
 		h.ServeHTTP(w, r)
 	}
 	return http.HandlerFunc(fn)

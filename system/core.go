@@ -3,8 +3,8 @@ package system
 import (
 	"crypto/sha256"
 	"encoding/json"
-	"fmt"
 	"errors"
+	"fmt"
 	"html/template"
 	"io"
 	"net/http"
@@ -13,7 +13,7 @@ import (
 	"reflect"
 	"strings"
 
-	"github.com/decred/dcrstakepool/models"
+	"github.com/decred-china/dcrstakepool/models"
 	"github.com/go-gorp/gorp"
 	"github.com/gorilla/sessions"
 	"github.com/srinathgs/mysqlstore"
@@ -30,12 +30,14 @@ const (
 )
 
 type Application struct {
-	APISecret      string
-	Template       *template.Template
-	TemplatesPath  string
-	Store          *mysqlstore.MySQLStore
-	DbMap          *gorp.DbMap
-	CsrfProtection *CsrfProtection
+	APISecret       string
+	Template        *template.Template
+	TemplatesPath   string
+	TemplateCN      *template.Template
+	TemplatesCNPath string
+	Store           *mysqlstore.MySQLStore
+	DbMap           *gorp.DbMap
+	CsrfProtection  *CsrfProtection
 }
 
 type CsrfProtection struct {
@@ -121,6 +123,39 @@ func (application *Application) LoadTemplates(templatePath string) error {
 
 	application.Template = template.Must(httpTemplates, nil)
 	application.TemplatesPath = templatePath
+	return nil
+}
+
+func (application *Application) LoadTemplatesCN(templatePath string) error {
+	var templates []string
+
+	fn := func(path string, f os.FileInfo, err error) error {
+		// If path doesn't exist, or other error with path, return error so that
+		// Walk will quit and return the error to the caller.
+		if err != nil {
+			return err
+		}
+		if !f.IsDir() && strings.HasSuffix(f.Name(), ".html") {
+			templates = append(templates, path)
+		}
+		return nil
+	}
+
+	err := filepath.Walk(templatePath, fn)
+	if err != nil {
+		return err
+	}
+
+	// Since template.Must panics with non-nil error, it is much more
+	// informative to pass the error to the caller (runMain) to log it and exit
+	// gracefully.
+	httpTemplates, err := template.ParseFiles(templates...)
+	if err != nil {
+		return err
+	}
+
+	application.TemplateCN = template.Must(httpTemplates, nil)
+	application.TemplatesCNPath = templatePath
 	return nil
 }
 

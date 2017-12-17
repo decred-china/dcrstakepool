@@ -10,11 +10,11 @@ import (
 	"sync/atomic"
 	"time"
 
+	"github.com/decred-china/dcrstakepool/models"
 	"github.com/decred/dcrd/chaincfg/chainhash"
 	"github.com/decred/dcrd/dcrjson"
 	"github.com/decred/dcrd/dcrutil"
 	"github.com/decred/dcrd/rpcclient"
-	"github.com/decred/dcrstakepool/models"
 	"github.com/decred/dcrwallet/wallet/udb"
 )
 
@@ -743,37 +743,37 @@ func (w *walletSvrManager) checkForSyncness(spuirs []*dcrjson.StakePoolUserInfoR
 				return false
 			}
 			/* TODO
-			// for now we are going to just consider the situation where the
-			// lengths of invalid/valid tickets differ.  When we have
-			// better infrastructure in stakepool wallets to update pool
-			// ticket status we can dig deeper into the scenarios and
-			// how best to resolve them.
-			for y := range spuirs[i].Tickets {
-				found := false
-				for z := range spuirs[k].Tickets {
-					if spuirs[i].Tickets[y] == spuirs[k].Tickets[z] {
-						found = true
-						break
-					}
-				}
-				if !found {
-					log.Infof("ticket not found! %v %v", i, spuirs[i].Tickets[y])
-					return false
-				}
-			}
-			for y := range spuirs[i].InvalidTickets {
-				found := false
-				for z := range spuirs[k].InvalidTickets {
-					if spuirs[i].InvalidTickets[y] == spuirs[k].InvalidTickets[z] {
-						found = true
-						break
-					}
-				}
-				if !found {
-					log.Infof("invalid ticket not found! %v %v", i, spuirs[i].InvalidTickets[y])
-					return false
-				}
-			}
+			   // for now we are going to just consider the situation where the
+			   // lengths of invalid/valid tickets differ.  When we have
+			   // better infrastructure in stakepool wallets to update pool
+			   // ticket status we can dig deeper into the scenarios and
+			   // how best to resolve them.
+			   for y := range spuirs[i].Tickets {
+			       found := false
+			       for z := range spuirs[k].Tickets {
+			           if spuirs[i].Tickets[y] == spuirs[k].Tickets[z] {
+			               found = true
+			               break
+			           }
+			       }
+			       if !found {
+			           log.Infof("ticket not found! %v %v", i, spuirs[i].Tickets[y])
+			           return false
+			       }
+			   }
+			   for y := range spuirs[i].InvalidTickets {
+			       found := false
+			       for z := range spuirs[k].InvalidTickets {
+			           if spuirs[i].InvalidTickets[y] == spuirs[k].InvalidTickets[z] {
+			               found = true
+			               break
+			           }
+			       }
+			       if !found {
+			           log.Infof("invalid ticket not found! %v %v", i, spuirs[i].InvalidTickets[y])
+			           return false
+			       }
+			   }
 			*/
 		}
 	}

@@ -1,7 +1,7 @@
 package helpers
 
 import (
-	"github.com/decred/dcrstakepool/models"
+	"github.com/decred-china/dcrstakepool/models"
 	"github.com/go-gorp/gorp"
 	"golang.org/x/crypto/bcrypt"
 )

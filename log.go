@@ -10,10 +10,10 @@ import (
 	"path/filepath"
 
 	"github.com/btcsuite/btclog"
-	"github.com/decred/dcrstakepool/controllers"
-	"github.com/decred/dcrstakepool/models"
-	"github.com/decred/dcrstakepool/stakepooldclient"
-	"github.com/decred/dcrstakepool/system"
+	"github.com/decred-china/dcrstakepool/controllers"
+	"github.com/decred-china/dcrstakepool/models"
+	"github.com/decred-china/dcrstakepool/stakepooldclient"
+	"github.com/decred-china/dcrstakepool/system"
 	"github.com/jrick/logrotate/rotator"
 )
 

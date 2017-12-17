@@ -85,6 +85,7 @@ type config struct {
 	DBName             string   `long:"dbname" description:"Name of database"`
 	PublicPath         string   `long:"publicpath" description:"Path to the public folder which contains css/fonts/images/javascript."`
 	TemplatePath       string   `long:"templatepath" description:"Path to the views folder which contains html files."`
+	TemplateCNPath     string   `long:"templatecnpath" description:"Path to the views folder which contains chinese html files."`
 	RecaptchaSecret    string   `long:"recaptchasecret" description:"Recaptcha Secret"`
 	RecaptchaSitekey   string   `long:"recaptchasitekey" description:"Recaptcha Sitekey"`
 	PoolEmail          string   `long:"poolemail" description:"Email address to for support inquiries"`

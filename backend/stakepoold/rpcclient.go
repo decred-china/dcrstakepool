@@ -5,10 +5,10 @@ import (
 	"io/ioutil"
 	"time"
 
+	"github.com/decred-china/dcrstakepool/backend/stakepoold/userdata"
 	"github.com/decred/dcrd/chaincfg/chainhash"
 	"github.com/decred/dcrd/dcrutil"
 	"github.com/decred/dcrd/rpcclient"
-	"github.com/decred/dcrstakepool/backend/stakepoold/userdata"
 )
 
 var requiredChainServerAPI = semver{major: 3, minor: 1, patch: 0}

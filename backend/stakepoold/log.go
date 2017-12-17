@@ -10,8 +10,8 @@ import (
 	"path/filepath"
 
 	"github.com/btcsuite/btclog"
-	"github.com/decred/dcrstakepool/backend/stakepoold/rpc/rpcserver"
-	"github.com/decred/dcrstakepool/backend/stakepoold/userdata"
+	"github.com/decred-china/dcrstakepool/backend/stakepoold/rpc/rpcserver"
+	"github.com/decred-china/dcrstakepool/backend/stakepoold/userdata"
 	"github.com/jrick/logrotate/rotator"
 )
 

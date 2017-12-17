@@ -11,10 +11,10 @@ import (
 
 	"github.com/gorilla/context"
 
+	"github.com/decred-china/dcrstakepool/controllers"
+	"github.com/decred-china/dcrstakepool/stakepooldclient"
+	"github.com/decred-china/dcrstakepool/system"
 	"github.com/decred/dcrd/rpcclient"
-	"github.com/decred/dcrstakepool/controllers"
-	"github.com/decred/dcrstakepool/stakepooldclient"
-	"github.com/decred/dcrstakepool/system"
 
 	"github.com/zenazn/goji/graceful"
 	"github.com/zenazn/goji/web"
@@ -69,6 +69,10 @@ func runMain() int {
 	}
 	if err = application.LoadTemplates(cfg.TemplatePath); err != nil {
 		log.Criticalf("Failed to load templates: %v", err)
+		return 2
+	}
+	if err = application.LoadTemplatesCN(cfg.TemplateCNPath); err != nil {
+		log.Criticalf("Failed to load cn templates: %v", err)
 		return 2
 	}
 

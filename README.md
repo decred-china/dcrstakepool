@@ -29,7 +29,7 @@ database and reload its config.
   performing the upgrade steps outlined below.
 - **KNOWN ISSUE** Total tickets count reported by stakepoold may
   not be totally accurate until low fee tickets that have been added to
-  the database can be marked as voted.  This will be resolved by future work. ([#201](https://github.com/decred/dcrstakepool/issues/201)).
+  the database can be marked as voted.  This will be resolved by future work. ([#201](https://github.com/decred-china/dcrstakepool/issues/201)).
 
 ## Git Tip Upgrade Guide
 
@@ -122,15 +122,15 @@ install the project.
 - Run the following command to obtain the dcrstakepool code and all dependencies:
 
 ```bash
-$ git clone https://github.com/decred/dcrstakepool $GOPATH/src/github.com/decred/dcrstakepool
-$ cd $GOPATH/src/github.com/decred/dcrstakepool
+$ git clone https://github.com/decred-china/dcrstakepool $GOPATH/src/github.com/decred-china/dcrstakepool
+$ cd $GOPATH/src/github.com/decred-china/dcrstakepool
 $ dep ensure
 ```
 
 - Assuming you have done the below configuration, build and run dcrstakepool:
 
 ```bash
-$ cd $GOPATH/src/github.com/decred/dcrstakepool
+$ cd $GOPATH/src/github.com/decred-china/dcrstakepool
 $ go build
 $ ./dcrstakepool
 ```
@@ -138,7 +138,7 @@ $ ./dcrstakepool
 - Build stakepoold and copy it to your voting nodes:
 
 ```bash
-$ cd $GOPATH/src/github.com/decred/dcrstakepool/backend/stakepoold
+$ cd $GOPATH/src/github.com/decred-china/dcrstakepool/backend/stakepoold
 $ go build
 ```
 
@@ -148,11 +148,11 @@ To update an existing source tree, pull the latest changes and install the
 matching dependencies:
 
 ```bash
-$ cd $GOPATH/src/github.com/decred/dcrstakepool
+$ cd $GOPATH/src/github.com/decred-china/dcrstakepool
 $ git pull
 $ dep ensure
 $ go build
-$ cd $GOPATH/src/github.com/decred/dcrstakepool/backend/stakepoold
+$ cd $GOPATH/src/github.com/decred-china/dcrstakepool/backend/stakepoold
 $ go build
 ```
 
@@ -250,7 +250,7 @@ The easiest way to run the stakepool code is to run it directly from the root of
 the source tree:
 
 ```bash
-$ cd $GOPATH/src/github.com/decred/dcrstakepool
+$ cd $GOPATH/src/github.com/decred-china/dcrstakepool
 $ go build
 $ ./dcrstakepool
 ```
@@ -317,7 +317,7 @@ dcrctl --wallet stakepooluserinfo "MultiSigAddress" | grep -Pzo '(?<="invalid": 
 
 ## Issue Tracker
 
-The [integrated github issue tracker](https://github.com/decred/dcrstakepool/issues)
+The [integrated github issue tracker](https://github.com/decred-china/dcrstakepool/issues)
 is used for this project.
 
 ## License

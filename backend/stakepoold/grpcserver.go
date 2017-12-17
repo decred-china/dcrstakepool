@@ -18,8 +18,8 @@ import (
 	"strings"
 	"time"
 
+	"github.com/decred-china/dcrstakepool/backend/stakepoold/rpc/rpcserver"
 	"github.com/decred/dcrd/certgen"
-	"github.com/decred/dcrstakepool/backend/stakepoold/rpc/rpcserver"
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"
