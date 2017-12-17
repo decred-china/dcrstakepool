@@ -38,9 +38,9 @@
      </div>
     </div> -->
 
-  <div class="form-group" style="{{if .FlashSuccess}}display: none;{{end}}">
+<!--   <div class="form-group" style="{{if .FlashSuccess}}display: none;{{end}}">
      <div class="g-recaptcha pull-right" style="margin-right:8px" data-sitekey="{{.RecaptchaSiteKey}}" data-theme="light"></div>
-  </div>
+  </div> -->
 
 <div class="row">
   <div class="form-group col-sm-8" style="{{if .FlashSuccess}}display: none;{{end}}">
@@ -57,7 +57,7 @@
 </div>
 	<input type="hidden" name="{{.CsrfKey}}" value={{.CsrfToken}}>
     </form>
-    </div> 
+    </div>
     </div>
 </div>
 {{end}}

@@ -1840,11 +1840,18 @@ func (controller *MainController) SignUpPost(c web.C, r *http.Request) (string, 
 		return controller.SignUp(c, r)
 	}
 
-	isValid := re.Verify(*r)
-	if !isValid {
-		session.AddFlash("Recaptcha error", "signupError")
-		log.Errorf("Recaptcha error %v", re.LastError())
-		return controller.SignUp(c, r)
+	/*
+	 * we remove the recathcha for chinese GFW
+	 */
+
+	language := r.Header.Get("accept-language")
+	if strings.Contains(language, "zh") == false {
+		isValid := re.Verify(*r)
+		if !isValid {
+			session.AddFlash("Recaptcha error", "signupError")
+			log.Errorf("Recaptcha error %v", re.LastError())
+			return controller.SignUp(c, r)
+		}
 	}
 
 	dbMap := controller.GetDbMap(c)
