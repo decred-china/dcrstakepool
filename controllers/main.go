@@ -43,8 +43,10 @@ var (
 	signupEmailTemplate = "A request for an account for __URL__\r\n" +
 		"was made from __REMOTEIP__ for this email address.\r\n\n" +
 		"If you made this request, follow the link below:\r\n\n" +
-		"__URL__/emailverify?t=__TOKEN__\r\n\n" +
+		"<a href=\"__URL__/emailverify?t=__TOKEN__\">__URL__/emailverify?t=__TOKEN__</a>" +
 		"to verify your email address and finalize registration.\r\n\n"
+	signupCNEmailTemplate = "" +
+		"<a href=\"__URL__/emailverify?t=__TOKEN__\">点击链接认证你的邮箱</a>"
 	StakepooldUpdateKindAll     = "ALL"
 	StakepooldUpdateKindUsers   = "USERS"
 	StakepooldUpdateKindTickets = "TICKETS"
@@ -1882,6 +1884,10 @@ func (controller *MainController) SignUpPost(c web.C, r *http.Request) (string, 
 	}
 
 	body := signupEmailTemplate
+	if strings.Contains(language, "zh") == false {
+		body = signupCNEmailTemplate
+	}
+
 	body = strings.Replace(body, "__URL__", controller.baseURL, -1)
 	body = strings.Replace(body, "__REMOTEIP__", remoteIP, -1)
 	body = strings.Replace(body, "__TOKEN__", token, -1)
