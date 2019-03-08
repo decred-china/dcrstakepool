@@ -11,8 +11,8 @@ import (
 	"github.com/decred/dcrd/rpcclient"
 )
 
-var requiredChainServerAPI = semver{major: 3, minor: 1, patch: 0}
-var requiredWalletAPI = semver{major: 4, minor: 1, patch: 0}
+var requiredChainServerAPI = semver{major: 5, minor: 0, patch: 0}
+var requiredWalletAPI = semver{major: 5, minor: 0, patch: 0}
 
 func connectNodeRPC(ctx *appContext, cfg *config) (*rpcclient.Client, semver, error) {
 	var nodeVer semver
@@ -24,7 +24,7 @@ func connectNodeRPC(ctx *appContext, cfg *config) (*rpcclient.Client, semver, er
 		return nil, nodeVer, err
 	}
 
-	log.Debugf("Attempting to connect to dcrd RPC %s as user %s "+
+	log.Infof("Attempting to connect to dcrd RPC %s as user %s "+
 		"using certificate located in %s",
 		cfg.DcrdHost, cfg.DcrdUser, cfg.DcrdCert)
 

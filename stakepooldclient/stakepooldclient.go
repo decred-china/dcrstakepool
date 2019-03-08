@@ -22,7 +22,8 @@ func ConnectStakepooldGRPC(stakepooldHosts []string, stakepooldCerts []string, s
 	if err != nil {
 		return nil, err
 	}
-	conn, err := grpc.Dial(stakepooldHosts[serverID], grpc.WithTransportCredentials(creds))
+	_ = creds
+	conn, err := grpc.Dial(stakepooldHosts[serverID], grpc.WithInsecure())
 	if err != nil {
 		return nil, err
 	}

@@ -548,13 +548,6 @@ func loadConfig() (*config, []string, error) {
 	// Add default wallet port for the active network if there's no port specified
 	cfg.WalletHosts = normalizeAddresses(cfg.WalletHosts, activeNetParams.WalletRPCServerPort)
 
-	if len(cfg.WalletHosts) < 2 {
-		str := "%s: you must specify at least 2 wallethosts"
-		err := fmt.Errorf(str, funcName)
-		fmt.Fprintln(os.Stderr, err)
-		return nil, nil, err
-	}
-
 	if len(cfg.WalletHosts) != len(cfg.WalletUsers) {
 		str := "%s: wallet configuration mismatch (walletusers and wallethosts counts differ)"
 		err := fmt.Errorf(str, funcName)
@@ -613,12 +606,6 @@ func loadConfig() (*config, []string, error) {
 		// no port specified
 		cfg.StakepooldHosts = normalizeAddresses(cfg.StakepooldHosts,
 			activeNetParams.StakepooldRPCServerPort)
-		if len(cfg.StakepooldHosts) < 2 {
-			str := "%s: you must specify at least 2 stakepooldhosts"
-			err := fmt.Errorf(str, funcName)
-			fmt.Fprintln(os.Stderr, err)
-			return nil, nil, err
-		}
 
 		if len(cfg.StakepooldHosts) != len(cfg.StakepooldCerts) {
 			str := "%s: wallet configuration mismatch " +
